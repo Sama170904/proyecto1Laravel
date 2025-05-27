@@ -67,31 +67,50 @@
                 </ul>
             </div>
             <div class="col-9">
-                <h1 class="display-1">Listado de Proyectos</h1>
-                <table class="table">
+                <p class="fs-1">Listado de Proyectos</p>
+
+                <table class="table table-striped align-middle">
                     <thead>
                         <tr>
-                        <th scope="col">codigo</th>
-                        <th scope="col">titulo</th>
-                        <th scope="col">descripcion</th>
-                        <th scope="col">Actualizacion</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Titulo</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($proyectos as $proyecto)
+                        @foreach ($proyectos as $proyecto)
                             <tr>
-                                <th scope="row">{{$proyecto->id }}</th>
-                                <td>{{$proyecto->titulo}}</td>
-                                <td>{{$proyecto->descripcion}}</td>
-                                <td>{{$proyecto->created_at}}</td>
-                                <td>...</td> <!-- Aquí puedes poner botones de editar, ver, eliminar, etc. -->
-                                <td>...</td>
+                                <th scope="row">{{ $proyecto->id }}</th>
+                                <td>{{ $proyecto->titulo }}</td>
+                                <td>{{ $proyecto->descripcion }}</td>
+                                <td>{{ $proyecto->created_at }}</td>
+                                <td>
+                                    <a href="{{ route('project.edit', $proyecto->id) }}" class="btn btn-warning btn-sm me-1">
+                                        Editar
+                                    </a>
+
+                                    <form action="{{ route('project.destroy', $proyecto->id) }}" method="POST" style="display: inline-block;" onsubmit="return confirm('¿Estás seguro de eliminar este proyecto?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            Eliminar
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
-                    </table>
+                </table>
             </div>
         </div>
+        <a href="http://localhost:8000/project/create" class="btn btn-success btn-lg shadow-sm rounded-pill d-flex align-items-center mx-auto mt-4" style="width: 150px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-lg me-2" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v6.5H15a.5.5 0 0 1 0 1H8.5v6.5a.5.5 0 0 1-1 0V9.5H1a.5.5 0 0 1 0-1h6.5V1.5A.5.5 0 0 1 8 1z"/>
+        </svg>
+        Agregar
+        </a>
         <div class="row">
             <div class="col">
                 <p class="lead">

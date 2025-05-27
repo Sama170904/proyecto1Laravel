@@ -1,4 +1,3 @@
-<!doctype html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -88,7 +87,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <footer>Hecho por Judith Uruchima</footer>
+                    <footer>Todos los derechos pertenecen a Rolando Samaniego</footer>
                 </div>
             </div>
         </div>
